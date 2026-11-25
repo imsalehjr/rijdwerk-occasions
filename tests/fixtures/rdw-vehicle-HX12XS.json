@@ -1,0 +1,1 @@
+[{"kenteken":"HX12XS","voertuigsoort":"Personenauto","merk":"<script>alert(1)</script>","handelsbenaming":"<img src=x onerror=alert('xss')> MODEL\u0000","vervaldatum_apk":"99999999","inrichting":"<b>sedan</b>","aantal_zitplaatsen":"500","eerste_kleur":{"nested":"object"},"datum_eerste_toelating":"20201301","cilinderinhoud":"-5","aantal_deuren":"DROP TABLE cars"}]
