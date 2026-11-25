@@ -1,0 +1,43 @@
+USE rijdwerk;
+
+INSERT INTO features (name, category) VALUES
+('Airconditioning', 'comfort'),
+('Climate control', 'comfort'),
+('Cruise control', 'comfort'),
+('Adaptieve cruise control', 'comfort'),
+('Stoelverwarming', 'comfort'),
+('Stuurverwarming', 'comfort'),
+('Elektrische achterklep', 'comfort'),
+('Keyless entry', 'comfort'),
+('Elektrisch verstelbare stoelen', 'comfort'),
+('Lederen bekleding', 'comfort'),
+('Panoramadak', 'comfort'),
+('Parkeersensoren voor', 'safety'),
+('Parkeersensoren achter', 'safety'),
+('Achteruitrijcamera', 'safety'),
+('360°-camera', 'safety'),
+('Dodehoekdetectie', 'safety'),
+('Rijstrookassistent', 'safety'),
+('Noodremassistent', 'safety'),
+('Verkeersbordherkenning', 'safety'),
+('Isofix', 'safety'),
+('Navigatiesysteem', 'multimedia'),
+('Apple CarPlay', 'multimedia'),
+('Android Auto', 'multimedia'),
+('DAB+ radio', 'multimedia'),
+('Bluetooth', 'multimedia'),
+('Draadloos laden', 'multimedia'),
+('Head-up display', 'multimedia'),
+('Digitaal instrumentenpaneel', 'multimedia'),
+('Lichtmetalen velgen', 'exterior'),
+('LED-koplampen', 'exterior'),
+('Trekhaak', 'exterior'),
+('Privacy glass', 'exterior'),
+('Dakrails', 'exterior'),
+('Mistlampen', 'exterior');
+
+INSERT INTO brands (name, slug) VALUES
+('Audi', 'audi'), ('BMW', 'bmw'), ('Fiat', 'fiat'), ('Ford', 'ford'), ('Hyundai', 'hyundai'),
+('Kia', 'kia'), ('Mazda', 'mazda'), ('Mercedes-Benz', 'mercedes-benz'), ('Opel', 'opel'),
+('Peugeot', 'peugeot'), ('Renault', 'renault'), ('Skoda', 'skoda'), ('Tesla', 'tesla'),
+('Toyota', 'toyota'), ('Volkswagen', 'volkswagen'), ('Volvo', 'volvo');
