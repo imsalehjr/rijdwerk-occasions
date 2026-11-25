@@ -86,7 +86,7 @@ final class RequestController
         $reference = Database::transaction(function () use ($v, $type, $car, $carLabel): string {
             $id = Database::insert(
                 'INSERT INTO requests (reference, type, car_id, car_label, name, email, phone, preferred_date, preferred_time, message, consent_at)
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, UTC_TIMESTAMP())',
+                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())',
                 [
                     'TMP-' . bin2hex(random_bytes(8)),
                     $type,

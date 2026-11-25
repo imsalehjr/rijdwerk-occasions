@@ -34,7 +34,7 @@ final class Auth
             'last_seen' => time(),
             'ua' => hash('sha256', Request::userAgent()),
         ];
-        Database::run('UPDATE admins SET last_login_at = UTC_TIMESTAMP() WHERE id = ?', [$admin['id']]);
+        Database::run('UPDATE admins SET last_login_at = NOW() WHERE id = ?', [$admin['id']]);
 
         return true;
     }
