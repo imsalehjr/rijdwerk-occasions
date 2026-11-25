@@ -72,7 +72,6 @@ const cars = [
     text: 'Stijlvolle plug-in hybride met AMG-pakket. De nieuwe generatie haalt meer dan 100 kilometer elektrisch, dus veel ritten doe je zonder benzine.\n\nDeze auto is gereserveerd voor een proefrit.' },
 ];
 
-const PLATES = ['K-482-TB', 'X-217-HN', 'N-906-ZL', 'L-334-PR', 'R-751-GD', 'H-128-JX', 'J-563-SF', 'G-874-VB', 'S-219-KT', 'T-640-RD', 'P-385-NX', 'H-902-LG', 'L-116-ZP', 'N-447-TF', 'R-279-SB'];
 
 const slugify = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const q = (s) => (s === null || s === undefined ? 'NULL' : `'${String(s).replace(/\\/g, '\\\\').replace(/'/g, "''")}'`);
@@ -96,8 +95,7 @@ for (const [i, c] of cars.entries()) {
   const slug = slugify(`${c.brand} ${c.model} ${c.variant} ${c.year}`);
   const reg = `${c.year}-${String(((i * 5) % 12) + 1).padStart(2, '0')}-${String(((i * 7) % 27) + 1).padStart(2, '0')}`;
   const apk = `${yearNow + 1}-${String(((i * 3) % 12) + 1).padStart(2, '0')}-15`;
-  const plate = PLATES[i].replace(/-/g, '');
-  lines.push(`INSERT INTO cars (id, slug, model_id, variant, plate, price, year, first_registration, mileage_km, fuel, transmission, body_type, color, power_kw, engine_cc, battery_kwh, range_km, doors, seats, owners, apk_until, warranty_months, description, status, is_featured, view_count, published_at, sold_at) VALUES (${id}, ${q(slug)}, ${models.get(`${c.brand}|${c.model}`)}, ${q(c.variant)}, ${q(plate)}, ${c.price}, ${c.year}, ${q(reg)}, ${c.km}, ${q(c.fuel)}, ${q(c.transmission)}, ${q(c.body)}, ${q(c.color)}, ${c.kw}, ${c.cc ?? 'NULL'}, ${c.battery ?? 'NULL'}, ${c.range ?? 'NULL'}, ${c.doors}, ${c.seats}, ${c.owners}, ${q(apk)}, ${c.status === 'sold' ? 12 : (c.year >= 2022 ? 24 : 12)}, ${q(c.text)}, ${q(c.status)}, ${c.featured}, ${c.views}, NOW() - INTERVAL ${c.days} DAY - INTERVAL ${(i * 37) % 600} MINUTE, ${c.soldDays ? `NOW() - INTERVAL ${c.soldDays} DAY` : 'NULL'});`);
+  lines.push(`INSERT INTO cars (id, slug, model_id, variant, plate, price, year, first_registration, mileage_km, fuel, transmission, body_type, color, power_kw, engine_cc, battery_kwh, range_km, doors, seats, owners, apk_until, warranty_months, description, status, is_featured, view_count, published_at, sold_at) VALUES (${id}, ${q(slug)}, ${models.get(`${c.brand}|${c.model}`)}, ${q(c.variant)}, NULL, ${c.price}, ${c.year}, ${q(reg)}, ${c.km}, ${q(c.fuel)}, ${q(c.transmission)}, ${q(c.body)}, ${q(c.color)}, ${c.kw}, ${c.cc ?? 'NULL'}, ${c.battery ?? 'NULL'}, ${c.range ?? 'NULL'}, ${c.doors}, ${c.seats}, ${c.owners}, ${q(apk)}, ${c.status === 'sold' ? 12 : (c.year >= 2022 ? 24 : 12)}, ${q(c.text)}, ${q(c.status)}, ${c.featured}, ${c.views}, NOW() - INTERVAL ${c.days} DAY - INTERVAL ${(i * 37) % 600} MINUTE, ${c.soldDays ? `NOW() - INTERVAL ${c.soldDays} DAY` : 'NULL'});`);
   lines.push(`INSERT INTO car_features (car_id, feature_id) SELECT ${id}, id FROM features WHERE name IN (${c.features.map(q).join(', ')});`);
 
   const svgs = renders({ ...c, color: COLORS[c.color] || '#777777', year: c.year });

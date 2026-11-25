@@ -134,7 +134,7 @@ docs/screenshots/
    - `npm install` and `npm run build` for the minified assets.
    - `npm run demo` to regenerate the demo renders and `demo.sql`.
 
-**RDW lookup:** `RDW_DRIVER=live` calls the real RDW Open Data API. `RDW_DRIVER=fake` uses the files in `tests/fixtures/` instead. Try `K-482-TB`, `N-906-ZL`, `HX-12-XS` (malicious response), `MZ-12-LB` (motorcycle) and `XX-999-X` (outage). An optional free app token from opendata.rdw.nl goes in `RDW_APP_TOKEN`.
+**RDW lookup:** `RDW_DRIVER=live` calls the real RDW Open Data API. `RDW_DRIVER=fake` uses the files in `tests/fixtures/` instead. Try `K-482-TB`, `N-906-ZL`, `HX-12-XS` (malicious response), `MZ-12-LB` (motorcycle) and `XX-999-X` (outage). With the live driver these plates may belong to real cars, which is why the demo cars have no plate. An optional free app token from opendata.rdw.nl goes in `RDW_APP_TOKEN`.
 
 **Mail:** with `MAIL_DRIVER=log`, every e-mail is saved as an `.eml` file in `storage/mail/`. You can open these in Outlook or Thunderbird.
 
