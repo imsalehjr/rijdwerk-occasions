@@ -7,8 +7,9 @@
     "renders": "node scripts/generate-renders.mjs"
   },
   "devDependencies": {
+    "@fontsource-variable/instrument-sans": "^5.2.0",
+    "axe-core": "^4.14.1",
     "esbuild": "^0.25.0",
-    "sharp": "^0.34.0",
-    "@fontsource-variable/instrument-sans": "^5.2.0"
+    "sharp": "^0.34.0"
   }
 }

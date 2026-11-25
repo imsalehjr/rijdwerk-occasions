@@ -97,7 +97,7 @@ for (const [i, c] of cars.entries()) {
   const reg = `${c.year}-${String(((i * 5) % 12) + 1).padStart(2, '0')}-${String(((i * 7) % 27) + 1).padStart(2, '0')}`;
   const apk = `${yearNow + 1}-${String(((i * 3) % 12) + 1).padStart(2, '0')}-15`;
   const plate = PLATES[i].replace(/-/g, '');
-  lines.push(`INSERT INTO cars (id, slug, model_id, variant, plate, price, year, first_registration, mileage_km, fuel, transmission, body_type, color, power_kw, engine_cc, battery_kwh, range_km, doors, seats, owners, apk_until, warranty_months, description, status, is_featured, view_count, published_at, sold_at) VALUES (${id}, ${q(slug)}, ${models.get(`${c.brand}|${c.model}`)}, ${q(c.variant)}, ${q(plate)}, ${c.price}, ${c.year}, ${q(reg)}, ${c.km}, ${q(c.fuel)}, ${q(c.transmission)}, ${q(c.body)}, ${q(c.color)}, ${c.kw}, ${c.cc ?? 'NULL'}, ${c.battery ?? 'NULL'}, ${c.range ?? 'NULL'}, ${c.doors}, ${c.seats}, ${c.owners}, ${q(apk)}, ${c.status === 'sold' ? 12 : (c.year >= 2022 ? 24 : 12)}, ${q(c.text)}, ${q(c.status)}, ${c.featured}, ${c.views}, UTC_TIMESTAMP() - INTERVAL ${c.days} DAY - INTERVAL ${(i * 37) % 600} MINUTE, ${c.soldDays ? `UTC_TIMESTAMP() - INTERVAL ${c.soldDays} DAY` : 'NULL'});`);
+  lines.push(`INSERT INTO cars (id, slug, model_id, variant, plate, price, year, first_registration, mileage_km, fuel, transmission, body_type, color, power_kw, engine_cc, battery_kwh, range_km, doors, seats, owners, apk_until, warranty_months, description, status, is_featured, view_count, published_at, sold_at) VALUES (${id}, ${q(slug)}, ${models.get(`${c.brand}|${c.model}`)}, ${q(c.variant)}, ${q(plate)}, ${c.price}, ${c.year}, ${q(reg)}, ${c.km}, ${q(c.fuel)}, ${q(c.transmission)}, ${q(c.body)}, ${q(c.color)}, ${c.kw}, ${c.cc ?? 'NULL'}, ${c.battery ?? 'NULL'}, ${c.range ?? 'NULL'}, ${c.doors}, ${c.seats}, ${c.owners}, ${q(apk)}, ${c.status === 'sold' ? 12 : (c.year >= 2022 ? 24 : 12)}, ${q(c.text)}, ${q(c.status)}, ${c.featured}, ${c.views}, NOW() - INTERVAL ${c.days} DAY - INTERVAL ${(i * 37) % 600} MINUTE, ${c.soldDays ? `NOW() - INTERVAL ${c.soldDays} DAY` : 'NULL'});`);
   lines.push(`INSERT INTO car_features (car_id, feature_id) SELECT ${id}, id FROM features WHERE name IN (${c.features.map(q).join(', ')});`);
 
   const svgs = renders({ ...c, color: COLORS[c.color] || '#777777', year: c.year });
@@ -142,15 +142,15 @@ for (const [i, r] of requests.entries()) {
   const c = cars[r.car - 1];
   const label = `${c.brand} ${c.model} ${c.variant}`;
   const ref = `RW-2026-${String(id).padStart(4, '0')}`;
-  const created = `UTC_TIMESTAMP() - INTERVAL ${r.ago} DAY - INTERVAL ${(i * 53) % 300 + 20} MINUTE`;
+  const created = `NOW() - INTERVAL ${r.ago} DAY - INTERVAL ${(i * 53) % 300 + 20} MINUTE`;
   lines.push(`INSERT INTO requests (id, reference, type, car_id, car_label, name, email, phone, preferred_date, preferred_time, message, status, consent_at, created_at) VALUES (${id}, ${q(ref)}, ${q(r.type)}, ${r.car}, ${q(label)}, ${q(name)}, ${q(email)}, ${q(phone)}, ${r.date !== undefined ? `CURDATE() + INTERVAL ${r.date} DAY` : 'NULL'}, ${r.time ? q(r.time) : 'NULL'}, ${q(r.msg)}, ${q(r.status)}, ${created}, ${created});`);
   lines.push(`INSERT INTO request_status_log (request_id, admin_id, from_status, to_status, created_at) VALUES (${id}, NULL, NULL, 'new', ${created});`);
   if (r.status !== 'new') {
     lines.push(`INSERT INTO request_status_log (request_id, admin_id, from_status, to_status, created_at) VALUES (${id}, 1, 'new', ${q(r.status)}, ${created} + INTERVAL 3 HOUR);`);
   }
 }
-lines.push(`INSERT INTO request_notes (request_id, admin_id, body, created_at) VALUES (4, 1, 'Gebeld, komt zaterdag met partner. Auto klaarzetten en laden tot 100%.', UTC_TIMESTAMP() - INTERVAL 1 DAY);`);
-lines.push(`INSERT INTO request_notes (request_id, admin_id, body, created_at) VALUES (5, 1, 'Bezorgen binnen 50 km is gratis, offerte gemaild.', UTC_TIMESTAMP() - INTERVAL 2 DAY);`);
+lines.push(`INSERT INTO request_notes (request_id, admin_id, body, created_at) VALUES (4, 1, 'Gebeld, komt zaterdag met partner. Auto klaarzetten en laden tot 100%.', NOW() - INTERVAL 1 DAY);`);
+lines.push(`INSERT INTO request_notes (request_id, admin_id, body, created_at) VALUES (5, 1, 'Bezorgen binnen 50 km is gratis, offerte gemaild.', NOW() - INTERVAL 2 DAY);`);
 lines.push('');
 
 const hash = execFileSync('php', ['-r', 'echo password_hash("RijdwerkDemo2026!", PASSWORD_BCRYPT, ["cost" => 12]);']).toString();

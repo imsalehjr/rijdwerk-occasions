@@ -12,7 +12,7 @@ final class SeoController
     {
         header('Content-Type: application/xml; charset=utf-8');
         $cars = Database::all(
-            "SELECT slug, updated_at FROM cars WHERE is_published = 1 AND (status <> 'sold' OR sold_at > UTC_TIMESTAMP() - INTERVAL 30 DAY) ORDER BY published_at DESC"
+            "SELECT slug, updated_at FROM cars WHERE is_published = 1 AND (status <> 'sold' OR sold_at > NOW() - INTERVAL 30 DAY) ORDER BY published_at DESC"
         );
         $brands = Database::all(
             "SELECT DISTINCT b.slug FROM brands b JOIN models m ON m.brand_id = b.id JOIN cars c ON c.model_id = m.id WHERE c.is_published = 1 AND c.status <> 'sold'"

@@ -15,7 +15,7 @@ final class CompareController
     public function index(): void
     {
         $raw = Request::str($_GET, 'ids', 60);
-        $ids = preg_match('/^\d+(,\d+){0,2}$/', $raw) ? explode(',', $raw) : [];
+        $ids = preg_match('/^\d+(,\d+){0,9}$/', $raw) ? array_slice(explode(',', $raw), 0, self::MAX) : [];
         $cars = array_slice(Cars::byIds($ids), 0, self::MAX);
 
         View::render('pages/compare', [

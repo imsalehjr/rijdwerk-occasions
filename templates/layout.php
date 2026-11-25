@@ -34,7 +34,7 @@ $canonicalUrl = $canonical ?? null;
 <a class="skip-link" href="#main">Direct naar de inhoud</a>
 <header class="site-header" data-header>
     <div class="wrap site-header__inner">
-        <a class="logo" href="<?= e(url('/')) ?>" aria-label="<?= e(Business::NAME) ?>, naar de homepage">
+        <a class="logo" href="<?= e(url('/')) ?>">
             <?= \App\View::partial('logo-mark') ?>
             <span class="logo__word"><span class="logo__name">Rijdwerk</span><span class="logo__sub">occasions · <?= e(Business::CITY) ?></span></span>
         </a>

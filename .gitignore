@@ -9,3 +9,5 @@
 /public/assets/js/*.min.js
 .DS_Store
 Thumbs.db
+/public/uploads/cars/*
+!/public/uploads/cars/.gitkeep
