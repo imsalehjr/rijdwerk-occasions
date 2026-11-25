@@ -180,7 +180,7 @@ p:last-child { margin-bottom: 0; }
 .hero h1 { font-size: clamp(2.9rem, 1.5rem + 6vw, 5.6rem); font-stretch: 75%; font-weight: 700; line-height: .9; letter-spacing: -.02em; max-width: 9.5ch; }
 .hero .lead { margin-top: 1.25rem; }
 .hero__visual { position: relative; margin: 0; border-radius: var(--r-lg); overflow: hidden; background: #e9ecea; }
-.hero__visual img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 60%; transform: scale(1.32); transform-origin: 50% 64%; }
+.hero__visual img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; object-position: 50% 60%; transform: scale(1.16); transform-origin: 50% 66%; }
 .hero__tag {
   position: absolute; left: clamp(.75rem, 2vw, 1.25rem); bottom: clamp(.75rem, 2vw, 1.25rem);
   display: grid; gap: .1rem; padding: .7rem 1rem; border-radius: var(--r-md);
