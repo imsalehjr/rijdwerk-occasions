@@ -1,0 +1,11 @@
+.env
+/vendor/
+/node_modules/
+/storage/mail/*
+/storage/logs/*
+/storage/cache/*
+!/storage/**/.gitkeep
+/public/assets/css/*.min.css
+/public/assets/js/*.min.js
+.DS_Store
+Thumbs.db

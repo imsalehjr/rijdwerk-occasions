@@ -1,0 +1,14 @@
+{
+  "name": "rijdwerk-occasions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "renders": "node scripts/generate-renders.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "sharp": "^0.34.0",
+    "@fontsource-variable/instrument-sans": "^5.2.0"
+  }
+}

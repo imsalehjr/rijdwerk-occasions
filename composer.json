@@ -1,0 +1,22 @@
+{
+    "name": "saleh/rijdwerk-occasions",
+    "description": "Used car dealer website with catalog and admin (portfolio project).",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.2",
+        "ext-pdo": "*",
+        "ext-gd": "*",
+        "ext-fileinfo": "*",
+        "ext-curl": "*",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
