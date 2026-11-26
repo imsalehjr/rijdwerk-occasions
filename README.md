@@ -138,6 +138,16 @@ docs/screenshots/
 
 **Mail:** with `MAIL_DRIVER=log`, every e-mail is saved as an `.eml` file in `storage/mail/`. You can open these in Outlook or Thunderbird.
 
+## Demo mode
+
+The public demo runs with `DEMO_MODE=true` in `.env`:
+
+- A banner explains that Rijdwerk is fictional and that data is reset automatically. Pages send `noindex`.
+- Mail is never sent, even with `MAIL_DRIVER=smtp`. Messages are written to `storage/mail/` instead.
+- Photo uploads are switched off, and deleting a photo or car keeps the image files, so the demo photos survive.
+- The login page shows the demo account from `DEMO_ADMIN_EMAIL` / `DEMO_ADMIN_PASSWORD`.
+- `php scripts/reset-demo.php` rebuilds the database from `database/*.sql`, sets the demo admin password, removes photos that are not in the demo data and clears stored mail. Run it with a cron job. It only runs from the command line and refuses to run without `DEMO_MODE=true`.
+
 ## How to deploy
 
 For a free demo link, **InfinityFree** works well:

@@ -29,6 +29,9 @@ final class PhotoController
         if (!$car) {
             Response::json(['ok' => false, 'error' => 'Auto niet gevonden.'], 404);
         }
+        if (is_demo()) {
+            Response::json(['ok' => false, 'error' => 'In de demo staat foto’s uploaden uit.'], 403);
+        }
         if (empty($_FILES) && (int) ($_SERVER['CONTENT_LENGTH'] ?? 0) > 0) {
             Response::json(['ok' => false, 'error' => 'De upload is groter dan de server toestaat. Upload minder foto’s tegelijk.'], 413);
         }

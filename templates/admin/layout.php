@@ -26,6 +26,11 @@ $nav = [
 </head>
 <body class="admin" data-base="<?= e(rtrim(url('/'), '/')) ?>">
 <a class="skip-link" href="#main">Direct naar de inhoud</a>
+<?php if (is_demo()): ?>
+<aside class="demo-banner" aria-label="Demo-melding">
+    <div class="wrap"><strong>Demo:</strong> dit is het beheerpaneel van een demo. Je mag alles aanpassen; alles wordt automatisch teruggezet. Foto’s uploaden staat uit.</div>
+</aside>
+<?php endif; ?>
 <div class="admin-shell">
     <aside class="admin-side">
         <a class="logo" href="<?= e(url('admin')) ?>">

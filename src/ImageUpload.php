@@ -135,6 +135,9 @@ final class ImageUpload
 
     public static function delete(string $dir, string $filename): void
     {
+        if (is_demo()) {
+            return;
+        }
         if (!preg_match('/^([a-f0-9]{32})\.webp$/', $filename, $m)) {
             return;
         }

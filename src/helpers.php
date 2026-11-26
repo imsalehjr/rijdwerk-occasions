@@ -44,6 +44,11 @@ function asset(string $path): string
     return url('assets/' . $path) . '?v=' . $version;
 }
 
+function is_demo(): bool
+{
+    return env('DEMO_MODE', 'false') === 'true';
+}
+
 function upload_url(string $filename): string
 {
     return url('uploads/cars/' . $filename);

@@ -32,6 +32,11 @@ $canonicalUrl = $canonical ?? null;
 </head>
 <body class="<?= e($bodyClass ?? '') ?>" data-base="<?= e(rtrim(url('/'), '/')) ?>">
 <a class="skip-link" href="#main">Direct naar de inhoud</a>
+<?php if (is_demo()): ?>
+<aside class="demo-banner" aria-label="Demo-melding">
+    <div class="wrap"><strong>Demo:</strong> Rijdwerk Occasions is een verzonnen autobedrijf. Je kunt alles uitproberen, maar er gaan geen e-mails de deur uit en alle gegevens worden automatisch teruggezet. Vul geen echte gegevens in. <a href="<?= e(url('admin/login')) ?>">Bekijk ook het beheerpaneel</a>.</div>
+</aside>
+<?php endif; ?>
 <header class="site-header" data-header>
     <div class="wrap site-header__inner">
         <a class="logo" href="<?= e(url('/')) ?>">

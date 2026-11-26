@@ -25,7 +25,7 @@ final class Mailer
             $mail->Body = View::fetch('emails/' . $template, $data + ['subject' => $subject]);
             $mail->AltBody = View::fetch('emails/' . $template . '-text', $data);
 
-            if (App::env('MAIL_DRIVER', 'log') === 'smtp') {
+            if (App::env('MAIL_DRIVER', 'log') === 'smtp' && !is_demo()) {
                 $mail->isSMTP();
                 $mail->Host = (string) App::env('MAIL_HOST');
                 $mail->Port = (int) App::env('MAIL_PORT', 587);

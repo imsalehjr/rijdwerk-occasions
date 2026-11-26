@@ -24,6 +24,10 @@ final class App
         ini_set('error_log', $root . '/storage/logs/php-error.log');
         date_default_timezone_set('Europe/Amsterdam');
 
+        if (self::env('DEMO_MODE') === 'true' && PHP_SAPI !== 'cli') {
+            header('X-Robots-Tag: noindex, nofollow');
+        }
+
         if (strlen((string) self::env('APP_KEY', '')) < 32) {
             http_response_code(500);
             exit('APP_KEY is missing or too short. Run the setup script or set it in .env.');
