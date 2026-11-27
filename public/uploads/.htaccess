@@ -1,4 +1,4 @@
-Options -Indexes -ExecCGI
+Options -Indexes
 Require all denied
 
 <FilesMatch ".+">
